@@ -1,46 +1,40 @@
-# Getting Started with Create React App
+Scatter Plot with Linear Regression
+This application displays a scatter plot and fits a linear regression line to the data using a server-side API. The user can upload a CSV file containing the data points, and the application will visualize the data points and the fitted line.
+Installation
+	1	Clone the repository: git clone https://github.com/mihirprakash/scatter-plot-with-linear-regression.git
+	2	Install dependencies: npm install
+	3	Install dependencies: pip install -r requirements.txt
+Usage FrontEnd
+	1	Start the server: npm run start
+	2	Open http://localhost:3000 in a web browser.
+	3	Click the "Upload CSV" button to select a CSV file containing the data points.
+	4	Click the "Fit Model" button to fit a linear regression line to the data.
+	5	The scatter plot and the fitted line will be displayed on the screen.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Usage Backend
+	1	Start the server: uvicorn main:app --reload
+	2	Upload data: Send a POST request to http://localhost:8000/data/upload/ with the CSV file containing x,y coordinates in the request body.
+	3	Calculate linear regression: Send a GET request to http://localhost:8000/linear_regression. This will fit a linear regression model to the uploaded data and return the model’s slope, intercept, and R-squared value.
 
-## Available Scripts
+API
+The application uses a server-side API to fit the linear regression line. The API endpoint is /linear_regression and accepts a POST request with the following parameters:
+	•	x: an array of x-coordinates of the data points
+	•	y: an array of y-coordinates of the data points
+The API returns an object with the following properties:
+	•	slope: the slope of the fitted line
+	•	intercept: the y-intercept of the fitted line
+	•	rSquared: the coefficient of determination (R-squared) of the fitted line
 
-In the project directory, you can run:
+/data/upload/
+This endpoint accepts a POST request with a CSV file containing x,y coordinates in the request body. The CSV file should have a header row with the column names "x" and "y", and subsequent rows should contain numerical values for x and y separated by a comma. Example:
 
-### `npm start`
+Copy code
+x,y 1,2 3,4 5,6
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+Dependencies
+	•	react: a JavaScript library for building user interfaces
+	•	d3: a JavaScript library for data visualization
+	•	axios: a JavaScript library for making HTTP requests
+	•	fastapi: python lib for api handling
+	•	uvicorn: python server
